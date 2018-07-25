@@ -6,4 +6,5 @@ urlpatterns = [
     path('groups/', views.groups, name='groups'),
     # path('activity/',views.activity, name='activity'),
     path('formpage/', views.formpage, name='formpage'),
+    path('review/', views.review, name='review')
 ]

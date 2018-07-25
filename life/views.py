@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.core import serializers
 from life.models import *
 from .forms import StudentForm
+from .forms import ReviewForm
 
 def index(request):
     all_groups = Group.objects.all()
@@ -22,3 +23,12 @@ def formpage(request):
     else:
       s = StudentForm()
     return render(request, 'life/formpage.html', {'form': s})
+  
+def review(request):
+    if request.method == "POST":
+      r = ReviewForm(request.POST)
+      post = r.save(commit=False)
+      post.save()
+    else:
+      r = ReviewForm()
+    return render(request, 'life/review.html', {'form': r})
