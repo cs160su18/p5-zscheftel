@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.core import serializers
 from life.models import *
+from .forms import StudentForm
 
 def index(request):
     all_groups = Group.objects.all()
@@ -12,3 +13,12 @@ def index(request):
 def groups(request):
     if request.method == 'POST':
         print('hi')
+
+def formpage(request):
+    if request.method == "POST":
+      s = StudentForm(request.POST)
+      post = s.save(commit=False)
+      post.save()
+    else:
+      s = StudentForm()
+    return render(request, 'life/formpage.html', {'form': s})
